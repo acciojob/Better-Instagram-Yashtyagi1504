@@ -4,6 +4,7 @@ divs.forEach(div=>{
     div.id = "div" + count;
     count++;
     div.addEventListener("dragstart",(e)=>{
+		div.classList.add("selected")
         e.dataTransfer.setData("text",div.id);
     })
 });
@@ -21,7 +22,7 @@ arr.forEach(event =>{
 			droppedDiv.replaceWith(temp);
 			draggedDiv.replaceWith(droppedDiv);
 			temp.replaceWith(draggedDiv);
-			// temp.remove();
+			draggedDiv.classList.remove("selected")
         }
     })
 })
