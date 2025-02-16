@@ -8,13 +8,20 @@ divs.forEach(div=>{
     })
 });
 let arr = ["dragover","dragenter","drop"];
-
+let parent = document.querySelector("#parent");
 arr.forEach(event =>{
-    body.addEventListener(event,(e)=>{
+    parent.addEventListener(event,(e)=>{
         e.preventDefault();
         if(event == "drop"){
-            let movingImage = document.querySelector("#" + e.dataTransfer.getData("text"));
-            body.append(movingImage)
+			// console.log(e.target.id)
+			let droppedDiv = document.querySelector("#" + e.target.id);
+			let draggedDiv = document.querySelector("#" + e.dataTransfer.getData("text"));
+
+			let temp = document.createElement("div");
+			droppedDiv.replaceWith(temp);
+			draggedDiv.replaceWith(droppedDiv);
+			temp.replaceWith(draggedDiv);
+			// temp.remove();
         }
     })
 })
